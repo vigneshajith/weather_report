@@ -43,6 +43,6 @@ app.post("/", function (
 
 app.listen(process.env.PORT || 3000, function (e) {
 
-  console.log("server in running on port3000");
+  console.log("server in running on port"+process.env.PORT);
     if(e)console.log("somting went worng")
 });
