@@ -2,8 +2,7 @@ const express = require("express");
 const https = require("https");
 const app = express();
 const { urlencoded } = require("body-parser");
-require("dotenv").config({ path: "env/.env" })
-
+require("dotenv").config({ path: "env/.env" });
 
 app.use(urlencoded({ extended: true }));
 
@@ -11,16 +10,13 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-
-app.post("/", function (
-  req, resp) {
-  
+app.post("/", function (req, resp) {
   const lat = req.body.lat;
   const lon = req.body.lon;
   const units = req.body.unit;
-  const appid = process.env.API_KEY; 
+  const appid = process.env.API_KEY;
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${appid}`;
-  console.log(url)
+  console.log(url);
 
   https.get(url, (res) => {
     res.on("data", (data) => {
@@ -39,10 +35,9 @@ app.post("/", function (
   });
 });
 
+const port = process.env.PORT || 3000;
 
-
-app.listen(process.env.PORT || 3000, function (e) {
-
-  console.log("server in running on port"+process.env.PORT);
-    if(e)console.log("somting went worng")
+app.listen(port, function (e) {
+  console.log("server in running on port "+port);
+  if (e) console.log("somting went worng");
 });
