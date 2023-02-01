@@ -3,7 +3,7 @@ const https = require("https");
 const app = express();
 const { urlencoded } = require("body-parser");
 require("dotenv").config({ path: "env/.env" })
-console.log(process.env.API_KEY);
+
 
 app.use(urlencoded({ extended: true }));
 
@@ -41,7 +41,7 @@ app.post("/", function (
 
 
 
-app.listen(3000, function (e) {
+app.listen(process.env.PORT || 3000, function (e) {
 
   console.log("server in running on port3000");
     if(e)console.log("somting went worng")
